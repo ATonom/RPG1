@@ -17,6 +17,11 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "StructsHelper",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/ef24ddb2-dc23-471b-b588-e1308f94ade0"
 		}
 	],
 	"TargetPlatforms": [
