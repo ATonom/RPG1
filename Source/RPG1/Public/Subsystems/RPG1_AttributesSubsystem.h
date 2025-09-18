@@ -1,8 +1,10 @@
+// Copyright Anatoly Rodin. All Rights Reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "FuncLibrary/RPG1Types.h"
 #include "RPG1_AttributesSubsystem.generated.h"
 
 /**
@@ -12,25 +14,27 @@ UCLASS()
 class RPG1_API URPG1_AttributesSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
-	
-public:
 
+public:
 	URPG1_AttributesSubsystem();
 
-	bool AttributesInitialization();
+	UFUNCTION(BlueprintCallable, Category = "RPG1 | AttributesSubsystem")
+	bool AttributesInfoInit(const UDataTable* AttributeInfoTable);
 
-	bool IsAttributesInitialized() const { return bAttributesInitialized; }
 
-	UFUNCTION()
-	uint16 GetNumberOfAttributes() const { return NumberOfAttributes; }
+	UFUNCTION(BlueprintCallable, Category = "RPG1 | AttributesSubsystem")
+	bool GetAttributeInfoByIndex(FAttributeInfo& OutAttributeInfo, int32 Index);
+
+	UFUNCTION(BlueprintCallable, Category = "RPG1 | AttributesSubsystem")
+	int32 GetNumberOfAttributes() const { return NumberOfAttributes; }
 
 private:
+	UPROPERTY()
+	TArray<FAttributeInfo> AttributesInfo;
 
 	UPROPERTY()
-	bool bAttributesInitialized = false;
+	TArray<FAttributeMax> AttributeMax;
 
 	UPROPERTY()
-	uint16 NumberOfAttributes = 0;
-
-
+	int32 NumberOfAttributes = 0;
 };
